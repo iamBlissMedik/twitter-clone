@@ -20,6 +20,11 @@ const darkMode = ref(false);
             <h1>dhs</h1>
           </main>
           <!-- right side bar -->
+           <div class="hidden col-span-12 md:block xs-col-span-1 xl:col-span-4 md:col-span-3 ">
+            <div class="sticky top-0">
+              <SideBarRight/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
