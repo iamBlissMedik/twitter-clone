@@ -16,13 +16,15 @@ const darkMode = ref(false);
             </div>
           </div>
           <!--middle/main content  -->
-          <main class="col-span-12 md:col-span-8 xl:col-span-6 bg-red-500">
-            <h1>dhs</h1>
+          <main class="col-span-12 md:col-span-8 xl:col-span-6 ">
+            <RouterView />
           </main>
           <!-- right side bar -->
-           <div class="hidden col-span-12 md:block xs-col-span-1 xl:col-span-4 md:col-span-3 ">
+          <div
+            class="hidden col-span-12 md:block xs-col-span-1 xl:col-span-4 md:col-span-3"
+          >
             <div class="sticky top-0">
-              <SideBarRight/>
+              <SideBarRight />
             </div>
           </div>
         </div>
