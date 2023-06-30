@@ -1,4 +1,5 @@
 import { sendError } from "h3";
+import bcrypt from "bcrypt";
 import { getUserByUsername } from "../../db/users";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -25,9 +26,14 @@ export default defineEventHandler(async (event) => {
   }
 
   // compare passwords
+  const doesThePasswordMatch = await bcrypt.compare(password, user.password);
 
   // generate tokens
+    // access tokens
+    // refresh tokens
+    
   return {
-    user: user,
+    user,
+    doesThePasswordMatch,
   };
 });
