@@ -1,7 +1,7 @@
 import { sendError } from "h3";
 import bcrypt from "bcrypt";
 import { getUserByUsername } from "../../db/users";
-import { generateTokens } from "../../utils/jwt";
+import { generateTokens, sendRefreshToken } from "../../utils/jwt";
 import { userTransformer } from "../../transformers/user";
 import { createRefreshToken } from "../../db/refreshTokens";
 export default defineEventHandler(async (event) => {
@@ -41,8 +41,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // generate tokens
-  // access tokens
-  // refresh tokens
+
   const { accessToken, refreshToken } = generateTokens(user);
 
   // save it inside db
@@ -50,6 +49,9 @@ export default defineEventHandler(async (event) => {
     token: refreshToken,
     userId: user.id,
   });
+
+  // add http only cookie
+  sendRefreshToken(event, refreshToken);
 
   return {
     access_token: accessToken,
