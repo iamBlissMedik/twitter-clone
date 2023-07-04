@@ -1,4 +1,4 @@
-import { sendError } from "h3";
+
 import bcrypt from "bcrypt";
 import { getUserByUsername } from "../../db/users";
 import { generateTokens, sendRefreshToken } from "../../utils/jwt";
