@@ -14,6 +14,7 @@ export default () => {
       try {
         const data = await $fetch("/api/auth/login", {
           method: "POST",
+
           body: {
             username,
             password,

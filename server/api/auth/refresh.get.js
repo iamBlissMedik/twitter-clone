@@ -1,5 +1,6 @@
 import { getRefreshTokenByToken } from "../../db/refreshTokens";
-import { decodeRefreshToken } from "../../utils/jwt";
+import { getUserById } from "../../db/users";
+import { decodeRefreshToken, generateTokens } from "../../utils/jwt";
 
 export default defineEventHandler(async (event) => {
   const cookies = parseCookies(event);
@@ -24,6 +25,17 @@ export default defineEventHandler(async (event) => {
     );
   }
   const token = decodeRefreshToken(refreshToken);
+  if (token) {
+    try {
+      const user = await getUserById(rToken.userId);
+      return {
+        user,
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return {
     hello: token,
   };
