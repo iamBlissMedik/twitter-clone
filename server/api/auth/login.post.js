@@ -1,9 +1,9 @@
-
 import bcrypt from "bcrypt";
 import { getUserByUsername } from "../../db/users";
 import { generateTokens, sendRefreshToken } from "../../utils/jwt";
 import { userTransformer } from "../../transformers/user";
 import { createRefreshToken } from "../../db/refreshTokens";
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { username, password } = body;

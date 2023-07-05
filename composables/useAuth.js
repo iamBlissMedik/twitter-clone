@@ -34,6 +34,7 @@ export default () => {
       try {
         const data = await $fetch("/api/auth/refresh");
         setToken(data.access_token);
+        resolve(true);
       } catch (error) {
         reject(error);
       }
@@ -42,7 +43,9 @@ export default () => {
   const initAuth = () => {
     return new Promise(async (resolve, reject) => {
       try {
+        alert("hey");
         await refreshToken();
+        resolve(true);
       } catch (error) {
         reject(error);
       }
@@ -51,5 +54,6 @@ export default () => {
   return {
     login,
     useAuthUser,
+    initAuth,
   };
 };

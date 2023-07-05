@@ -1,5 +1,8 @@
 <script setup>
-const { useAuthUser } = useAuth();
+const { useAuthUser, initAuth } = useAuth();
+onBeforeMount(() => {
+  initAuth();
+});
 const user = useAuthUser();
 const darkMode = ref(false);
 </script>

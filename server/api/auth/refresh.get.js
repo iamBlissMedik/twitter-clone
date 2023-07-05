@@ -25,18 +25,19 @@ export default defineEventHandler(async (event) => {
     );
   }
   const token = decodeRefreshToken(refreshToken);
-  if (token) {
-    try {
-      const user = await getUserById(rToken.userId);
-      return {
-        user,
-      };
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  try {
+    const user = await getUserById(token.userId);
 
-  return {
-    hello: token,
-  };
+    const { accessToken } = generateTokens(user);
+
+    return { access_token: accessToken };
+  } catch (error) {
+    return sendError(
+      event,
+      createError({
+        statusCode: 500,
+        statusMessage: "Something went wrong",
+      })
+    );
+  }
 });
