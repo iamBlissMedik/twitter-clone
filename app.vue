@@ -11,9 +11,8 @@ const darkMode = ref(false);
 <template>
   <div :class="{ dark: darkMode }">
     <div class="bg-white dark:bg-dim-900">
-      <div v-if="isAuthLoading">
-        <div>loading</div>
-      </div>
+      <LoadingPage v-if="isAuthLoading" />
+
       <!-- app -->
       <div v-else-if="user" class="min-h-full">
         <div
