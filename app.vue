@@ -1,8 +1,9 @@
 <script setup>
-const { useAuthUser, initAuth } = useAuth();
+const { useAuthUser, initAuth, useAuthLoading } = useAuth();
 onBeforeMount(() => {
   initAuth();
 });
+const isAuthLoading = useAuthLoading();
 const user = useAuthUser();
 const darkMode = ref(false);
 </script>
@@ -10,8 +11,11 @@ const darkMode = ref(false);
 <template>
   <div :class="{ dark: darkMode }">
     <div class="bg-white dark:bg-dim-900">
+      <div v-if="isAuthLoading">
+        <div>loading</div>
+      </div>
       <!-- app -->
-      <div v-if="user" class="min-h-full">
+      <div v-else-if="user" class="min-h-full">
         <div
           class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5"
         >
