@@ -1,9 +1,14 @@
 <script setup>
-
+const props = defineProps({
+    user: {
+        type: Object,
+        required:true
+    }
+})
 </script>
 <template>
     <div>
-      <TweetFormInput/>
+      <TweetFormInput :user="user"/>
     </div>
 </template>
 
