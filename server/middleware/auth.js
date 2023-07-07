@@ -2,7 +2,7 @@ import UrlPattern from "url-pattern";
 import { getUserById } from "~/server/db/users";
 import { decodeAccessToken } from "~/server/utils/jwt";
 export default defineEventHandler(async (event) => {
-  const endpoints = ["/api/auth/user"];
+  const endpoints = ["/api/auth/user", "/api/user/tweets"];
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
     return pattern.match(event.node.req.url);
