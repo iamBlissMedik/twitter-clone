@@ -5,6 +5,8 @@ const user = useAuthUser();
 </script>
 <template>
   <div>
-    <MainSection title="Home" :loading="false"> {{ user }} </MainSection>
+    <MainSection title="Home" :loading="false"> {{ user }}
+      <TweetForm/>
+    </MainSection>
   </div>
 </template>
