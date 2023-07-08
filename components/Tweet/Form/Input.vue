@@ -6,10 +6,11 @@ const props = defineProps({
     }
 })
 const text = ref("")
+const emits = defineEmits(["onSubmit"])
 const handleFormSubmit = () => {
-   return alert(JSON.stringify({
-        text:text.value
-    }))
+    emits('onSubmit', {
+    text:text.value
+  })
 }
 </script>
 <template>
