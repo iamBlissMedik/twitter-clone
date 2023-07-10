@@ -1,4 +1,6 @@
 <script setup>
+const imageInput = ref();
+
 const props = defineProps({
   user: {
     type: Object,
@@ -11,6 +13,9 @@ const handleFormSubmit = () => {
   emits("onSubmit", {
     text: text.value,
   });
+};
+const handleImageClick = () => {
+  imageInput.value.click();
 };
 </script>
 <template>
@@ -32,12 +37,18 @@ const handleFormSubmit = () => {
     </div>
     <!-- file selector -->
     <div class="p-4 pl-16">
-        <input type="file" >
+      <input
+        type="file"
+        ref="imageInput"
+        hidden
+        accept="image/png, image/gif, image/jpeg"
+      />
     </div>
     <!-- ICONS -->
     <div class="flex p-2 pl-14">
       <div
         class="p-2 text-blue-400 rounded-full hover:bg-blue-50 dark:hover:bg-dim-800 cursor-pointer"
+        @click="handleImageClick"
       >
         <!-- Image frame Icon -->
         <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
