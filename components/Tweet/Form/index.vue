@@ -14,7 +14,7 @@ const handleFormSubmit = async (data) => {
       text: data.text,
       mediaFiles: data.mediaFiles,
     });
-    console.log(response);
+    alert(JSON.stringify(data));
   } catch (error) {
     console.log(error);
   } finally {

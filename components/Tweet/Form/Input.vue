@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const { twitterBorderColor } = useTailwindConfig();
 const inputImageUrl = ref(null);
@@ -14,7 +14,7 @@ const props = defineProps({
 });
 const text = ref("");
 const emits = defineEmits(["onSubmit"]);
-const isDisabled = computed(()=>text.value === '')
+const isDisabled = computed(() => text.value === "");
 const handleFormSubmit = () => {
   emits("onSubmit", {
     text: text.value,
@@ -152,9 +152,15 @@ const handleImageChange = (event) => {
       </div>
       <div class="ml-auto">
         <span class="font-bold">
-            <UIButton size="sm" :disabled="isDisabled"> Tweet </UIButton>
+          <UIButton
+            size="sm"
+            :disabled="isDisabled"
+            @onClick="handleFormSubmit"
+          >
+            Tweet
+          </UIButton>
         </span>
-        <!-- <button @click="handleFormSubmit">Tweet</button> -->
+      
       </div>
     </div>
   </div>
