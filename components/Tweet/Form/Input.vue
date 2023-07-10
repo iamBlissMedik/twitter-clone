@@ -1,5 +1,7 @@
 <script setup>
+const inputImageUrl = ref(null);
 const imageInput = ref();
+const selectedFile = ref(null);
 
 const props = defineProps({
   user: {
@@ -12,10 +14,20 @@ const emits = defineEmits(["onSubmit"]);
 const handleFormSubmit = () => {
   emits("onSubmit", {
     text: text.value,
+    mediaFiles: [selectedFile.value],
   });
 };
 const handleImageClick = () => {
   imageInput.value.click();
+};
+const handleImageChange = (event) => {
+  const file = event.target.files[0];
+  selectedFile.value = file;
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    inputImageUrl.value = event.target.result;
+  };
+  reader.readAsDataURL(file);
 };
 </script>
 <template>
@@ -37,11 +49,13 @@ const handleImageClick = () => {
     </div>
     <!-- file selector -->
     <div class="p-4 pl-16">
+        <img :src="inputImageUrl" alt="" v-if="inputImageUrl">
       <input
         type="file"
         ref="imageInput"
         hidden
         accept="image/png, image/gif, image/jpeg"
+        @change="handleImageChange"
       />
     </div>
     <!-- ICONS -->

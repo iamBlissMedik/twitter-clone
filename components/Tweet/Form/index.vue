@@ -7,12 +7,15 @@ const props = defineProps({
   },
 });
 const handleFormSubmit = async (data) => {
-   try {
-       const response = await postTweet(data)
-    console.log(response)
-   } catch (error) {
-    console.log(error)
-   }
+  try {
+    const response = await postTweet({
+      text: data.text,
+      mediaFiles: data.mediaFiles,
+    });
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 <template>
