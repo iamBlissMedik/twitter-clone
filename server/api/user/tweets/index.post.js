@@ -15,11 +15,12 @@ export default defineEventHandler(async (event) => {
   });
   const { fields, files } = response;
   const userId = event.context?.auth?.user?.id;
+
   const tweetData = {
     text: fields.text[0],
     authorId: userId,
   };
-  const replyTo = fields.replyTo;
+  const replyTo = fields.replyTo[0];
   if (replyTo && replyTo !== "null") {
     tweetData.replyToId = replyTo;
   }
