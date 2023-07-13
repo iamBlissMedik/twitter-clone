@@ -23,7 +23,7 @@ const { twitterBorderColor } = useTailwindConfig();
         <img :src="image.url" class="w-full rounded-2xl" />
       </div>
       <div class="mt-2">
-        action buttons
+        <TweetItemActions />
       </div>
     </div>
   </div>
