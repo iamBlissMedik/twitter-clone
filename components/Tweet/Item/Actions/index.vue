@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
   <div>
-    <TweetItemActionsIcon color="blue" />
+    <TweetItemActionsIcon color="yellow" />
   </div>
 </template>
