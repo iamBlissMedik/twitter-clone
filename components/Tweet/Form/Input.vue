@@ -11,6 +11,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  placeholder: {
+    type: String,
+    required: true,
+  },
 });
 const text = ref("");
 const emits = defineEmits(["onSubmit"]);
@@ -48,7 +52,7 @@ const handleImageChange = (event) => {
         <textarea
           v-model="text"
           class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0"
-          placeholder="What's happening ?"
+          :placeholder="placeholder"
         ></textarea>
       </div>
     </div>
@@ -160,7 +164,6 @@ const handleImageChange = (event) => {
             Tweet
           </UIButton>
         </span>
-      
       </div>
     </div>
   </div>

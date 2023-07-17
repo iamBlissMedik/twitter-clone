@@ -2,6 +2,8 @@
 const loading = ref(false);
 const tweet = ref(null);
 const { getTweetById } = useTweets();
+const { useAuthUser } = useAuth();
+const user = useAuthUser();
 const getTweetIdFromRoute = () => {
   return useRoute().params.id;
 };
@@ -9,8 +11,8 @@ const getTweetIdFromRoute = () => {
 const getTweet = async () => {
   loading.value = true;
   try {
-    const { tweet } = await getTweetById(getTweetIdFromRoute());
-    tweet.value = tweet;
+    const response = await getTweetById(getTweetIdFromRoute());
+    tweet.value = response.tweet;
   } catch (error) {
     console.log(error);
   } finally {
@@ -25,8 +27,7 @@ onBeforeMount(() => getTweet());
       <Head>
         <title> </title>
       </Head>
-
-      {{ tweet }}
+      <TweetDetails :tweet="tweet" :user="user" />
     </MainSection>
   </div>
 </template>

@@ -6,6 +6,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  placeholder: {
+    type: String,
+    default: "What's happening ?",
+  },
 });
 const handleFormSubmit = async (data) => {
   loading.value = true;
@@ -28,7 +32,11 @@ const handleFormSubmit = async (data) => {
       <UISpinner />
     </div>
     <div>
-      <TweetFormInput :user="user" @onSubmit="handleFormSubmit" />
+      <TweetFormInput
+        :placeholder="placeholder"
+        :user="user"
+        @onSubmit="handleFormSubmit"
+      />
     </div>
   </div>
 </template>
