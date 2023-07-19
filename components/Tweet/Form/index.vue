@@ -13,12 +13,13 @@ const props = defineProps({
 });
 const handleFormSubmit = async (data) => {
   loading.value = true;
+  console.log("tapped");
   try {
     const response = await postTweet({
       text: data.text,
       mediaFiles: data.mediaFiles,
     });
-    alert(JSON.stringify(data));
+    alert(JSON.stringify(response));
   } catch (error) {
     console.log(error);
   } finally {

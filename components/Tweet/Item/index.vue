@@ -32,7 +32,7 @@ const textSize = computed(() => (props.compact ? "text-base" : "text-2xl"));
         <img :src="image.url" class="w-full rounded-2xl" />
       </div>
       <div class="mt-2">
-        <TweetItemActions :tweet="tweet" />
+        <TweetItemActions :tweet="tweet" :compact="compact" />
       </div>
     </div>
   </div>

@@ -1,6 +1,4 @@
 <script setup>
-import { computed } from "vue";
-
 const { twitterBorderColor } = useTailwindConfig();
 const inputImageUrl = ref(null);
 const imageInput = ref();
@@ -15,6 +13,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  replyTo: {
+    type: Object,
+    default: null,
+  },
 });
 const text = ref("");
 const emits = defineEmits(["onSubmit"]);
@@ -23,6 +25,7 @@ const handleFormSubmit = () => {
   emits("onSubmit", {
     text: text.value,
     mediaFiles: [selectedFile.value],
+    replyTo: props.replyTo?.id,
   });
 };
 const handleImageClick = () => {
