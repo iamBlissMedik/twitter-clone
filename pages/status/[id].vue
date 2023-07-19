@@ -1,4 +1,6 @@
 <script setup>
+
+
 const loading = ref(false);
 const tweet = ref(null);
 const { getTweetById } = useTweets();
@@ -11,9 +13,9 @@ const getTweetIdFromRoute = () => {
 const getTweet = async () => {
   loading.value = true;
   try {
-      const response = await getTweetById(getTweetIdFromRoute());
-    console.log(response)
-    tweet.value = response.tweet;
+    const response = await getTweetById(getTweetIdFromRoute());
+    console.log(response);
+    tweet.value = await response.tweet;
   } catch (error) {
     console.log(error);
   } finally {

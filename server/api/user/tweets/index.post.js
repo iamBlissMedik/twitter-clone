@@ -20,8 +20,8 @@ export default defineEventHandler(async (event) => {
     text: fields.text?.[0],
     authorId: userId,
   };
-  const replyTo = fields.replyTo[0];
-  if (replyTo && replyTo !== "undefined") {
+  const replyTo = fields.replyTo?.[0];
+  if (replyTo && replyTo !== "undefined" && replyTo !== "null") {
     tweetData.replyToId = replyTo;
   }
   const tweet = await createTweet(tweetData);

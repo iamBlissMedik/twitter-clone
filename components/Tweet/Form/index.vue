@@ -10,14 +10,18 @@ const props = defineProps({
     type: String,
     default: "What's happening ?",
   },
+  replyTo: {
+    type: Object,
+    default: null,
+  },
 });
 const handleFormSubmit = async (data) => {
   loading.value = true;
-  console.log("tapped");
   try {
     const response = await postTweet({
       text: data.text,
       mediaFiles: data.mediaFiles,
+      replyTo: props.replyTo?.id,
     });
     alert(JSON.stringify(response));
   } catch (error) {
