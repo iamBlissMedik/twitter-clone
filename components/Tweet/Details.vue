@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from "vue";
+
 const props = defineProps({
   tweet: {
     type: Object,
@@ -9,10 +11,12 @@ const props = defineProps({
     required: true,
   },
 });
+const replies = computed(() => props.tweet?.replies || []);
 </script>
 <template>
   <div>
     <TweetItem :tweet="tweet" />
     <TweetForm placeholder="Tweet your reply" :user="user" />
+    <TweetListFeed :tweets="replies" />
   </div>
 </template>

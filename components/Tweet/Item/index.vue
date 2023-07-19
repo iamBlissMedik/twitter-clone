@@ -4,14 +4,23 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  compact: {
+    type: Boolean,
+    default: false,
+  },
 });
+
 const { twitterBorderColor } = useTailwindConfig();
+const tweetBodyWrapper = computed(() =>
+  props.compact ? "ml-16" : "ml-2 mt-4"
+);
+const textSize = computed(() => (props.compact ? "text-base" : "text-2xl"));
 </script>
 <template>
   <div>
     <TweetItemHeader :tweet="tweet" />
-    <div class="ml-16">
-      <p class="flex-shrink w-auto font-medium text-gray-800">
+    <div :class="tweetBodyWrapper">
+      <p class="flex-shrink w-auto font-medium text-gray-800" :class="textSize">
         {{ tweet.text }}
       </p>
       <div

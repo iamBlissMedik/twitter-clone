@@ -20,7 +20,7 @@ const isEmptyArray = computed(() => props.tweets.length === 0);
       v-for="tweet in tweets"
       :key="tweet.id"
     >
-      <TweetItem :tweet="tweet" />
+      <TweetItem :tweet="tweet" compact />
     </div>
   </div>
 </template>
