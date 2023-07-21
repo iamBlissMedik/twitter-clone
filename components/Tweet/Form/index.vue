@@ -15,6 +15,10 @@ const props = defineProps({
     type: Object,
     default: null,
   },
+  showReply: {
+    type: Boolean,
+    default: false,
+  },
 });
 const handleFormSubmit = async (data) => {
   loading.value = true;
@@ -38,6 +42,7 @@ const handleFormSubmit = async (data) => {
       <UISpinner />
     </div>
     <div v-else>
+      <TweetItem :tweet="replyTo" v-if="replyTo && showReply" hideActions/>
       <TweetFormInput
         :placeholder="placeholder"
         :user="user"

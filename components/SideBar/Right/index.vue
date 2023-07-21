@@ -1,4 +1,5 @@
 <script setup>
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 const whatsHappening = ref([
   {
     title: "SpaceX",
@@ -33,6 +34,21 @@ const whoToFollowItems = ref([
 </script>
 <template>
   <div class="flex flex-col">
+    <!-- searchbar -->
+    <div class="relative m-2">
+      <div
+        class="flex absolute items-center h-full pl-4 text-gray-600  cursor-pointer"
+      >
+        <div class="w-6 h-6">
+          <MagnifyingGlassIcon />
+        </div>
+      </div>
+      <input
+        class="flex items-center w-full pl-12 text-sm font-normal text-gray-100 bg-gray-200 border border-gray-200 rounded-full shadow dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-blue-200 h-9"
+        type="text"
+        placeholder="Search Tweet"
+      />
+    </div>
     <!-- preview card: What's happening -->
     <SideBarRightPreviewCard title="What's happening">
       <SideBarRightPreviewCardItem v-for="whatsHappening in whatsHappening">

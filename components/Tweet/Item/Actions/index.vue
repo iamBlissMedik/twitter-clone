@@ -22,7 +22,11 @@ const generateRandomNumber = () => Math.floor(Math.random() * 100);
 </script>
 <template>
   <div class="flex items-center justify-around w-full">
-    <TweetItemActionsIcon color="blue" @onClick="onCommentClick" :size="size">
+    <TweetItemActionsIcon
+      color="blue"
+      @onClick="emits('onCommentClick')"
+      :size="size"
+    >
       <template v-slot:icon="{ classes }">
         <ChatBubbleOvalLeftEllipsisIcon :class="classes" />
       </template>
