@@ -1,10 +1,12 @@
 <script setup>
+import { onBeforeMount } from "vue";
 const { twitterBorderColor } = useTailwindConfig();
 const { useAuthUser } = useAuth();
 const { getHomeTweets } = useTweets();
 const user = useAuthUser();
 const loading = ref(false);
 const homeTweets = ref([]);
+
 onBeforeMount(async () => {
   loading.value = true;
   try {
@@ -16,6 +18,11 @@ onBeforeMount(async () => {
     loading.value = false;
   }
 });
+const handleFormSuccess = (tweet) => {
+  return navigateTo({
+    path: `/status/${tweet.id}`,
+  });
+};
 </script>
 <template>
   <div>
@@ -24,7 +31,7 @@ onBeforeMount(async () => {
         <title>Home / Twitter</title>
       </Head>
       <div class="border-b" :class="twitterBorderColor">
-        <TweetForm :user="user" />
+        <TweetForm :user="user" @onSuccess="handleFormSuccess" />
       </div>
       <TweetListFeed :tweets="homeTweets" />
     </MainSection>

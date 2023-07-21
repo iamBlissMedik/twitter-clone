@@ -1,11 +1,13 @@
 <script setup>
-
-
 const loading = ref(false);
 const tweet = ref(null);
 const { getTweetById } = useTweets();
 const { useAuthUser } = useAuth();
 const user = useAuthUser();
+watch(
+  () => useRoute().fullPath,
+  () => getTweet()
+);
 const getTweetIdFromRoute = () => {
   return useRoute().params.id;
 };
@@ -14,7 +16,7 @@ const getTweet = async () => {
   loading.value = true;
   try {
     const response = await getTweetById(getTweetIdFromRoute());
-    console.log(response);
+
     tweet.value = await response.tweet;
   } catch (error) {
     console.log(error);
@@ -22,7 +24,9 @@ const getTweet = async () => {
     loading.value = false;
   }
 };
-onBeforeMount(() => getTweet());
+onBeforeMount(() => {
+  getTweet();
+});
 </script>
 <template>
   <div>

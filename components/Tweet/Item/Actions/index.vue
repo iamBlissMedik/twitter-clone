@@ -5,6 +5,7 @@ import {
   ArrowPathIcon,
   ArrowUpTrayIcon,
 } from "@heroicons/vue/24/outline";
+const emits = defineEmits(["onCommentClick"]);
 const props = defineProps({
   tweet: {
     type: Object,
@@ -21,7 +22,7 @@ const generateRandomNumber = () => Math.floor(Math.random() * 100);
 </script>
 <template>
   <div class="flex items-center justify-around w-full">
-    <TweetItemActionsIcon color="blue" :size="size">
+    <TweetItemActionsIcon color="blue" @onClick="onCommentClick" :size="size">
       <template v-slot:icon="{ classes }">
         <ChatBubbleOvalLeftEllipsisIcon :class="classes" />
       </template>

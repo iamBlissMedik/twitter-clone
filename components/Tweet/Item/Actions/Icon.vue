@@ -10,9 +10,11 @@ const props = defineProps({
     default: 5,
   },
 });
+
+const emits = defineEmits(['onClick'])
 </script>
 <template>
-  <div class="flex items-center text-gray-400 cursor-pointer group">
+  <div @click.stop.prevent="emits('onClick')" class="flex items-center text-gray-400 cursor-pointer group">
     <div
       :class="`p-2 rounded-full group-hover:bg-${color}-100 group-hover:text-${color}-400 dark:group-hover:bg-opacity-20 ${defaultTransition}`"
     >

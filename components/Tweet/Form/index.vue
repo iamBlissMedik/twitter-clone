@@ -1,4 +1,5 @@
 <script setup>
+const emits = defineEmits(["onSuccess"]);
 const loading = ref(false);
 const { postTweet } = useTweets();
 const props = defineProps({
@@ -23,7 +24,7 @@ const handleFormSubmit = async (data) => {
       mediaFiles: data.mediaFiles,
       replyTo: props.replyTo?.id,
     });
-    alert(JSON.stringify(response));
+    emits("onSuccess", response.tweet);
   } catch (error) {
     console.log(error);
   } finally {
@@ -36,7 +37,7 @@ const handleFormSubmit = async (data) => {
     <div v-if="loading" class="flex items-center justify-center py-6">
       <UISpinner />
     </div>
-    <div>
+    <div v-else>
       <TweetFormInput
         :placeholder="placeholder"
         :user="user"

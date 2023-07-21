@@ -15,6 +15,9 @@ const tweetBodyWrapper = computed(() =>
   props.compact ? "ml-16" : "ml-2 mt-4"
 );
 const textSize = computed(() => (props.compact ? "text-base" : "text-2xl"));
+const handleCommentClick = () => {
+  alert("hey");
+};
 </script>
 <template>
   <div>
@@ -32,7 +35,11 @@ const textSize = computed(() => (props.compact ? "text-base" : "text-2xl"));
         <img :src="image.url" class="w-full rounded-2xl" />
       </div>
       <div class="mt-2">
-        <TweetItemActions :tweet="tweet" :compact="compact" />
+        <TweetItemActions
+          @onCommentClick="handleCommentClick"
+          :tweet="tweet"
+          :compact="compact"
+        />
       </div>
     </div>
   </div>
