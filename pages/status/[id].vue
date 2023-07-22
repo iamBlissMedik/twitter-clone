@@ -4,10 +4,7 @@ const tweet = ref(null);
 const { getTweetById } = useTweets();
 const { useAuthUser } = useAuth();
 const user = useAuthUser();
-watch(
-  () => useRoute().fullPath,
-  () => getTweet()
-);
+
 const getTweetIdFromRoute = () => {
   return useRoute().params.id;
 };
@@ -24,6 +21,10 @@ const getTweet = async () => {
     loading.value = false;
   }
 };
+watch(
+  () => useRoute().fullPath,
+  () => getTweet()
+);
 onBeforeMount(() => {
   getTweet();
 });

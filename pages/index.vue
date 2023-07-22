@@ -2,7 +2,7 @@
 import { onBeforeMount } from "vue";
 const { twitterBorderColor } = useTailwindConfig();
 const { useAuthUser } = useAuth();
-const { getHomeTweets } = useTweets();
+const { getTweets } = useTweets();
 const user = useAuthUser();
 const loading = ref(false);
 const homeTweets = ref([]);
@@ -10,7 +10,7 @@ const homeTweets = ref([]);
 onBeforeMount(async () => {
   loading.value = true;
   try {
-    const { tweets } = await getHomeTweets();
+    const { tweets } = await getTweets();
     homeTweets.value = tweets;
   } catch (error) {
     console.log(error);

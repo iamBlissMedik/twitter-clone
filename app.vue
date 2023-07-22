@@ -15,6 +15,9 @@ const replyTweet = useReplyTweet();
 emitter.$on("replyTweet", (tweet) => {
   openPostTweetModal(tweet);
 });
+emitter.$on("toggleDarkMode", () => {
+  darkMode.value = !darkMode.value;
+});
 const darkMode = ref(false);
 onBeforeMount(() => {
   initAuth();

@@ -22,8 +22,8 @@ const replyToTweetUrl = computed(() => `/status/${props.tweet?.replyTo?.id}`);
         <nuxt-link to="#">{{ author.handle }}</nuxt-link>
         . {{ tweet.postedAtHuman }}
       </span>
-      <p v-if="tweet.replyTo" class="text-sm">
-        <span class="text-gray-500"> Replying to </span>
+      <p v-if="tweet.replyTo" class="text-sm text-gray-500">
+        <span> Replying to </span>
         <nuxt-link :to="replyToTweetUrl">
           {{ tweet.replyTo.author.handle }}
         </nuxt-link>

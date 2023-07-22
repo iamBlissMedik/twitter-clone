@@ -27,7 +27,7 @@ const handleCommentClick = () => {
   <div>
     <TweetItemHeader :tweet="tweet" />
     <div :class="tweetBodyWrapper">
-      <p class="flex-shrink w-auto font-medium text-gray-800" :class="textSize">
+      <p class="flex-shrink w-auto font-medium text-gray-800 dark:text-white" :class="textSize">
         {{ tweet.text }}
       </p>
       <div
