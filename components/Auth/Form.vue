@@ -18,6 +18,9 @@ const handleLogin = async () => {
     data.loading = false;
   }
 };
+const isButtonDisabled = computed(() => {
+  return (!data.username || !data.password) || data.loading
+})
 </script>
 <template>
   <div>
@@ -34,6 +37,7 @@ const handleLogin = async () => {
         type="password"
         v-model="data.password"
       />
+      <UIButton liquid :disabled="isButtonDisabled"> Login </UIButton>
       <div>
         <button @click="handleLogin">Login</button>
       </div>
