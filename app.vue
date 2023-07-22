@@ -1,5 +1,5 @@
 <script setup>
-const { useAuthUser, initAuth, useAuthLoading } = useAuth();
+const { useAuthUser, initAuth, useAuthLoading, logOut } = useAuth();
 
 const isAuthLoading = useAuthLoading();
 const user = useAuthUser();
@@ -31,6 +31,9 @@ const handleModalCose = () => {
 const handleOpenTweetModal = () => {
   openPostTweetModal(null);
 };
+const handleUserLogout = () => {
+  logOut();
+};
 </script>
 
 <template>
@@ -46,7 +49,11 @@ const handleOpenTweetModal = () => {
           <!-- left side bar -->
           <div class="hidden md:block xs-col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SideBarLeft @onTweet="handleOpenTweetModal" />
+              <SideBarLeft
+                @onTweet="handleOpenTweetModal"
+                @onLogOut="handleUserLogout"
+                :user="user"
+              />
             </div>
           </div>
           <!--middle/main content  -->

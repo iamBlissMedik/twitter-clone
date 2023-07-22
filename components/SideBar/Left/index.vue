@@ -9,13 +9,20 @@ import {
   UserIcon,
   EllipsisHorizontalCircleIcon,
   PencilIcon,
+  ChevronDownIcon,
 } from "@heroicons/vue/24/outline";
 const { defaultTransition } = useTailwindConfig();
-const emits = defineEmits(["onTweet"]);
+const emits = defineEmits(["onTweet", "onLogOut"]);
+const props = defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
+});
 </script>
 
 <template>
-  <div class="h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col">
     <div
       class="p-2 my-2 rounded-full hover:bg-blue-50 w-min dark:hover:bg-white/20"
       :class="defaultTransition"
@@ -86,6 +93,29 @@ const emits = defineEmits(["onTweet"]);
             <PencilIcon />
           </div>
         </UIButton>
+      </div>
+    </div>
+    <div
+      class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800"
+      :class="defaultTransition"
+      @click="emits('onLogOut')"
+    >
+      <div class="flex flex-row">
+        <img :src="user.profileImage" class="w-10 h-10 rounded-full" />
+        <div class="flex-col hidden ml-2 xl:block">
+          <h1 class="text-sm font-bold text-gray-800 dark:text-white">
+            {{ user.name }}
+          </h1>
+          <p class="text-sm text-gray-400">
+            {{ user.handle }}
+          </p>
+        </div>
+      </div>
+      <!-- icon -->
+      <div class="hidden ml-auto xl:block">
+        <div class="w-6 h-6">
+          <ChevronDownIcon />
+        </div>
       </div>
     </div>
   </div>
