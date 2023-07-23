@@ -5,14 +5,20 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  page: {
+    type: String,
+    default: "/",
+  },
 });
-const textClasses = computed(()=>props.active ? 'font-semibold' : 'font-normal')
+const textClasses = computed(() =>
+  props.active ? "font-semibold" : "font-normal"
+);
 </script>
 
 <template>
   <NuxtLink
-    to="#"
-    class="flex items-center  p-3 w-min rounded-full hover:bg-gray-200 dark:hover:bg-dim-200 dark:text-white"
+    :to="page"
+    class="flex items-center p-3 w-min rounded-full hover:bg-gray-200 dark:hover:bg-dim-200 dark:text-white"
     :class="defaultTransition"
   >
     <div class="w-6 h-6 text-dark">

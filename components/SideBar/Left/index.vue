@@ -34,7 +34,7 @@ const props = defineProps({
       </NuxtLink>
     </div>
     <div class="mt-2 space-y-3">
-      <SideBarLeftTab active>
+      <SideBarLeftTab page="/" active>
         <template #icon>
           <HomeIcon />
         </template>

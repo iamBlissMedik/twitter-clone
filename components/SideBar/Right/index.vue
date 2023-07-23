@@ -1,7 +1,7 @@
 <script setup>
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 
-const emitter = useEmitter()
+const emitter = useEmitter();
 const search = ref("");
 const handleSearch = () => {
   useRouter().push({
@@ -43,8 +43,8 @@ const whoToFollowItems = ref([
   },
 ]);
 const handleToggleDarkMode = () => {
-emitter.$emit('toggleDarkMode')
-}
+  emitter.$emit("toggleDarkMode");
+};
 </script>
 <template>
   <div class="flex flex-col">
@@ -54,7 +54,7 @@ emitter.$emit('toggleDarkMode')
         class="flex absolute items-center h-full pl-4 text-gray-600 cursor-pointer"
       >
         <div class="w-6 h-6">
-          <MagnifyingGlassIcon @click="handleSearch" />
+          <MagnifyingGlassIcon @click.prevent="handleSearch" />
         </div>
       </div>
       <input
@@ -106,7 +106,12 @@ emitter.$emit('toggleDarkMode')
     <footer>
       <ul class="mx-2 my-4 text-xs text-gray-500">
         <li class="inline-block mx-2">
-          <a href="#" class="hover:underline" @click.prevent="handleToggleDarkMode">Dark Mode</a>
+          <a
+            href="#"
+            class="hover:underline"
+            @click.prevent="handleToggleDarkMode"
+            >Dark Mode</a
+          >
         </li>
         <li class="inline-block mx-2">
           <a href="#" class="hover:underline">Privacy Policy</a>
@@ -123,9 +128,7 @@ emitter.$emit('toggleDarkMode')
         <li class="inline-block mx-2">
           <a href="#" class="hover:underline">More</a>
         </li>
-        <li class="inline-block mx-2">
-          ©️ 2023 Twitter,Inc.
-        </li>
+        <li class="inline-block mx-2">©️ 2023 Twitter,Inc.</li>
       </ul>
     </footer>
   </div>

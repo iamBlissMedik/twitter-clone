@@ -1,4 +1,5 @@
 <script setup>
+import { onBeforeMount } from "vue";
 const loading = ref(false);
 const tweet = ref(null);
 const { getTweetById } = useTweets();

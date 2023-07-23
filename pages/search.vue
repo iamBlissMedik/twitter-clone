@@ -1,19 +1,24 @@
 <script setup>
-const { getTweets: getTweetsComposable } = useTweets();
+const { getTweets } = useTweets();
 
 const loading = ref(false);
 const searchTweets = ref([]);
 const searchQuery = useRoute().query.q;
+onMounted(() => {
+  getSearchedTweets();
+});
 watch(
   () => useRoute().fullPath,
-  () => getTweets()
+  () => getSearchedTweets()
 );
-const getTweets = async () => {
+const getSearchedTweets = async () => {
   loading.value = true;
+
   try {
-    const { tweets } = await getTweetsComposable({
+    const { tweets } = await getTweets({
       query: searchQuery,
     });
+
     searchTweets.value = tweets;
   } catch (error) {
     console.log(error);
@@ -21,9 +26,6 @@ const getTweets = async () => {
     loading.value = false;
   }
 };
-onBeforeMount(async () => {
-  getTweets();
-});
 </script>
 <template>
   <div>

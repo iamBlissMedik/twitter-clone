@@ -32,6 +32,9 @@ const handleOpenTweetModal = () => {
   openPostTweetModal(null);
 };
 const handleUserLogout = () => {
+  useRouter().push({
+    path: "/",
+  });
   logOut();
 };
 </script>
