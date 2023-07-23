@@ -22,9 +22,11 @@ const emits = defineEmits(["update:modelValue"]);
 </script>
 <template>
   <div>
-    <label for="" class="block pl-3 ml-px text-sm font-medium text-gray-700">{{
-      label
-    }}</label>
+    <label
+      for=""
+      class="block pl-3 ml-px text-sm font-medium text-gray-700 dark:text-white"
+      >{{ label }}</label
+    >
     <input
       @input="(event) => emits('update:modelValue', event.target.value)"
       :type="type"
