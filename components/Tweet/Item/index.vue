@@ -28,10 +28,10 @@ const handleCommentClick = () => {
     <TweetItemHeader :tweet="tweet" />
     <div :class="tweetBodyWrapper">
       <p class="flex-shrink w-auto font-medium text-gray-800 dark:text-white" :class="textSize">
-        {{ tweet.text }}
+        {{ tweet?.text }}
       </p>
       <div
-        v-for="image in tweet.mediaFiles"
+        v-for="image in tweet?.mediaFiles"
         :key="image.id"
         class="flex my-3 mr-2 border-2 rounded-2xl"
         :class="twitterBorderColor"

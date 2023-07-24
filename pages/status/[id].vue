@@ -1,33 +1,31 @@
 <script setup>
-import { onBeforeMount } from "vue";
 const loading = ref(false);
 const tweet = ref(null);
+
 const { getTweetById } = useTweets();
 const { useAuthUser } = useAuth();
 const user = useAuthUser();
-
-const getTweetIdFromRoute = () => {
-  return useRoute().params.id;
-};
+const route = useRoute();
 
 const getTweet = async () => {
   loading.value = true;
   try {
-    const response = await getTweetById(getTweetIdFromRoute());
+    const response = await getTweetById(route.params.id);
 
-    tweet.value = await response.tweet;
+    tweet.value = response.tweet;
   } catch (error) {
     console.log(error);
   } finally {
     loading.value = false;
   }
 };
+
 watch(
   () => useRoute().fullPath,
-  () => getTweet()
+  async () => await getTweet()
 );
-onBeforeMount(() => {
-  getTweet();
+onBeforeMount(async () => {
+  await getTweet();
 });
 </script>
 <template>
@@ -36,7 +34,9 @@ onBeforeMount(() => {
       <Head>
         <title> </title>
       </Head>
-      <TweetDetails :tweet="tweet" :user="user" />
+      <div v-if="tweet">
+        <TweetDetails :tweet="tweet" :user="user" />
+      </div>
     </MainSection>
   </div>
 </template>

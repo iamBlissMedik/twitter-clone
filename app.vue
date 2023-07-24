@@ -61,7 +61,7 @@ const handleUserLogout = () => {
           </div>
           <!--middle/main content  -->
           <main class="col-span-12 md:col-span-8 xl:col-span-6">
-            <RouterView />
+            <NuxtPage/>
           </main>
           <!-- right side bar -->
           <div
